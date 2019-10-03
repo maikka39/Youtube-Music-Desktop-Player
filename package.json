@@ -1,0 +1,32 @@
+{
+  "name": "youtube-music-desktop-player",
+  "version": "0.0.1",
+  "description": "Desktop Client for YouTube Music",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "./node_modules/.bin/electron .  \"npm run lint && node\"",
+    "lint": "eslint src/**/*.js",
+    "lint:fix": "eslint src/**/*.js  --fix",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maikka39/Youtube-Music-Desktop-Player.git"
+  },
+  "author": "Maik de Kruif (maik_dev)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maikka39/Youtube-Music-Desktop-Player/issues"
+  },
+  "homepage": "https://github.com/maikka39/Youtube-Music-Desktop-Player#readme",
+  "devDependencies": {
+    "electron": "^6.0.11",
+    "electron-reload": "^1.5.0",
+    "eslint": "^6.5.1",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1"
+  }
+}
