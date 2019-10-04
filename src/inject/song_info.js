@@ -25,15 +25,16 @@ function getSongInfo () {
   }
 
   const bar = document.querySelector('#progress-bar')
+  if (bar) {
+    const progress = parseInt(bar.getAttribute('value'))
+    if (progress) {
+      data.progress = progress
+    }
 
-  const progress = parseInt(bar.getAttribute('value'))
-  if (progress) {
-    data.progress = progress
-  }
-
-  const length = parseInt(bar.getAttribute('aria-valuemax'))
-  if (length) {
-    data.length = length
+    const length = parseInt(bar.getAttribute('aria-valuemax'))
+    if (length) {
+      data.length = length
+    }
   }
 
   const isPlaying = document.querySelector('.play-pause-button.ytmusic-player-bar')
