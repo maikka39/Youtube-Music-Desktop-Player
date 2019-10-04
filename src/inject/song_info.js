@@ -1,15 +1,48 @@
 function getSongInfo () {
+  const data = {}
+
+  // Set defaults
+  data.title = 'Unknown'
+  data.artist = 'Unknown'
+  data.thumbnail = ''
+  data.progress = 0
+  data.length = 0
+  data.isPlaying = false
+
+  const title = document.querySelector('.ytmusic-player-bar.title')
+  if (title && title.textContent !== '') {
+    data.title = title.textContent
+  }
+
+  const artist_line = document.querySelector('.ytmusic-player-bar.byline')
+  if (artist_line) {
+    data.artist = artist_line.textContent.split('•')[0].trim()
+  }
+
+  const thumbnail = document.querySelector('.ytmusic-player-bar.byline')
+  if (thumbnail) {
+    data.thumbnail = thumbnail
+  }
+
   const bar = document.querySelector('#progress-bar')
 
-  return {
-    title: document.querySelector('.ytmusic-player-bar.title').textContent,
-    artist: document.querySelector('.ytmusic-player-bar.byline').textContent.split('•')[0].slice(0, -1),
-    thumbnail: document.querySelector('.ytmusic-player-bar > img').getAttribute('src'),
-    progress: parseInt(bar.getAttribute('value')),
-    length: parseInt(bar.getAttribute('aria-valuemax')),
-    // TODO: Change so that is works in multiple languages
-    isPlaying: document.querySelector('.play-pause-button.ytmusic-player-bar').getAttribute('title') == 'Pause'
+  const progress = parseInt(bar.getAttribute('value'))
+  if (progress) {
+    data.progress = progress
   }
+
+  const length = parseInt(bar.getAttribute('aria-valuemax'))
+  if (length) {
+    data.length = length
+  }
+
+  const isPlaying = document.querySelector('.play-pause-button.ytmusic-player-bar')
+  if (isPlaying) {
+    // TODO: Make this work in multiple languages
+    data.isPlaying = isPlaying.getAttribute('title') == 'Pause'
+  }
+
+  return data
 }
 
 module.exports = getSongInfo

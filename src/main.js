@@ -14,6 +14,7 @@ function createWindow () {
   win = new BrowserWindow({
     width: 1200,
     height: 600,
+    title: 'YouTube Music Desktop Player',
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,

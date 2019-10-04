@@ -16,6 +16,11 @@ function onClick () {
 
 function updateTitle () {
   const info = getSongInfo()
+  if (info.title === 'Unknown') {
+    win.setTitle('YouTube Music Desktop Player')
+    return
+  }
+
   let playing = ''
   if (!info.isPlaying) {
     playing = '(Paused) '
