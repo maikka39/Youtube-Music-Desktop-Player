@@ -7,6 +7,7 @@ function getSongInfo () {
   data.thumbnail = ''
   data.progress = 0
   data.length = 0
+  data.volume = 0
   data.isPlaying = false
 
   const title = document.querySelector('.ytmusic-player-bar.title')
@@ -35,6 +36,11 @@ function getSongInfo () {
     if (length) {
       data.length = length
     }
+  }
+
+  const volume = document.getElementById('volume-slider')
+  if (volume) {
+    data.volume = volume.getAttribute('value')
   }
 
   const isPlaying = document.querySelector('.play-pause-button.ytmusic-player-bar')

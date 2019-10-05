@@ -3,6 +3,7 @@ const getSongInfo = require('./song_info')
 let playPauseButton
 let nextButton
 let previousButton
+let volumeSlider
 
 function checkPlayPauseButton () {
   if (!playPauseButton) {
@@ -62,11 +63,16 @@ function previous () {
   }
 }
 
+function setVolume (volume) {
+  document.getElementById('volume-slider').setAttribute('value', volume)
+}
+
 module.exports = {
   play: play,
   pause: pause,
   toggle: toggle,
   next: next,
   skip: next,
-  previous: previous
+  previous: previous,
+  setVolume: setVolume
 }
