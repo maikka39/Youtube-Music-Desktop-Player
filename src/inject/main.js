@@ -10,7 +10,7 @@ function pageLoaded () {
   // document.title = getSongInfo()
   addCSS('main.css')
 
-  document.getElementsByTagName('body')[0].addEventListener('click', onClick)
+  document.body.addEventListener('click', onClick)
 }
 
 function onClick () {
