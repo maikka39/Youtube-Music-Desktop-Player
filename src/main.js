@@ -20,7 +20,7 @@ function createWindow () {
       contextIsolation: true,
       preload: path.join(__dirname, 'inject', 'main.js')
     },
-    backgroundColor: '#000000'
+    backgroundColor: '#131313'
   })
 
   // and load the index.html of the app.

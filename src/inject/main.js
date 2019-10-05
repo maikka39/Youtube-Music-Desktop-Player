@@ -1,5 +1,6 @@
 const { webContents, getCurrentWindow } = require('electron').remote
 const getSongInfo = require('./song_info')
+const addCSS = require('./add_css')
 
 const win = getCurrentWindow()
 const contents = webContents.fromId(win.id)
@@ -7,6 +8,8 @@ contents.on('did-finish-load', pageLoaded)
 
 function pageLoaded () {
   // document.title = getSongInfo()
+  addCSS('main.css')
+
   document.getElementsByTagName('body')[0].addEventListener('click', onClick)
 }
 
