@@ -4,7 +4,7 @@
   "description": "Desktop Client for YouTube Music",
   "main": "src/main.js",
   "scripts": {
-    "start": "./node_modules/.bin/electron .  \"npm run lint && node\"",
+    "start": "npm run lint && ./node_modules/.bin/electron .",
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint src/**/*.js  --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
