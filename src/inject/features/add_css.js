@@ -3,7 +3,7 @@ const fs = remote.require('fs')
 const path = remote.require('path')
 
 function addCSS (filepath) {
-  filepath = path.join(__dirname, 'content', filepath)
+  filepath = path.join(__dirname, '..', 'assets', filepath)
   fs.readFile(filepath, (err, data) => {
     if (err) throw err
 
