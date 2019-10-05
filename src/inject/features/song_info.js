@@ -1,53 +1,33 @@
+const selectors = {
+  title: "document.querySelector('.ytmusic-player-bar.title')",
+  artist: "document.querySelector('.ytmusic-player-bar.byline')",
+  thumbnail: "document.querySelector('.ytmusic-player-bar > img')",
+  progressBar: "document.querySelector('#progress-bar')",
+  volume: "document.getElementById('volume-slider')",
+  playButton: "document.querySelector('.play-pause-button.ytmusic-player-bar')"
+}
+
+const objects = {}
+
+function get (v) {
+  if (!objects[v]) {
+    objects[v] = eval(selectors[v])
+  }
+
+  // Return empty element if we can't find the object to prevent further errors
+  return objects[v] || document.createElement('p')
+}
+
 function getSongInfo () {
   const data = {}
 
-  // Set defaults
-  data.title = 'Unknown'
-  data.artist = 'Unknown'
-  data.thumbnail = ''
-  data.progress = 0
-  data.length = 0
-  data.volume = 0
-  data.isPlaying = false
-
-  const title = document.querySelector('.ytmusic-player-bar.title')
-  if (title && title.textContent !== '') {
-    data.title = title.textContent
-  }
-
-  const artistLine = document.querySelector('.ytmusic-player-bar.byline')
-  if (artistLine) {
-    data.artist = artistLine.textContent.split('•')[0].trim()
-  }
-
-  const thumbnail = document.querySelector('.ytmusic-player-bar.byline')
-  if (thumbnail) {
-    data.thumbnail = thumbnail
-  }
-
-  const bar = document.querySelector('#progress-bar')
-  if (bar) {
-    const progress = parseInt(bar.getAttribute('value'))
-    if (progress) {
-      data.progress = progress
-    }
-
-    const length = parseInt(bar.getAttribute('aria-valuemax'))
-    if (length) {
-      data.length = length
-    }
-  }
-
-  const volume = document.getElementById('volume-slider')
-  if (volume) {
-    data.volume = volume.getAttribute('value')
-  }
-
-  const isPlaying = document.querySelector('.play-pause-button.ytmusic-player-bar')
-  if (isPlaying) {
-    // TODO: Make this work in multiple languages
-    data.isPlaying = isPlaying.getAttribute('title') === 'Pause'
-  }
+  data.title = get('title').textContent || 'Unknown'
+  data.artist = get('artist').textContent.split('•')[0].trim() || 'Unknown'
+  data.thumbnail = get('thumbnail').getAttribute('src') || ''
+  data.progress = parseInt(get('progressBar').getAttribute('value')) || 0
+  data.length = parseInt(get('progressBar').getAttribute('aria-valuemax')) || 0
+  data.volume = get('volume').getAttribute('value') || 100
+  data.isPlaying = get('playButton').getAttribute('title') === 'Pause' // TODO: Make cross-language
 
   return data
 }

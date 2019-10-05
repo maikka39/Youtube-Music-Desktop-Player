@@ -1,70 +1,49 @@
 const getSongInfo = require('./song_info')
 
-let playPauseButton
-let nextButton
-let previousButton
-let volumeSlider
-
-function checkPlayPauseButton () {
-  if (!playPauseButton) {
-    playPauseButton = document.querySelector('.play-pause-button.ytmusic-player-bar')
-  }
-
-  return !!playPauseButton
+const selectors = {
+  playPauseButton: "document.querySelector('.play-pause-button.ytmusic-player-bar')",
+  nextButton: "document.querySelector('.next-button.ytmusic-player-bar')",
+  previousButton: "document.querySelector('.previous-button.ytmusic-player-bar')",
+  volumeSlider: "document.getElementById('volume-slider')"
 }
 
-function checkNextButton () {
-  if (!nextButton) {
-    nextButton = document.querySelector('.next-button.ytmusic-player-bar')
+const objects = {}
+
+function get (v) {
+  if (!objects[v]) {
+    objects[v] = eval(selectors[v])
   }
 
-  return !!nextButton
-}
-
-function checkPreviousButton () {
-  if (!previousButton) {
-    previousButton = document.querySelector('.previous-button.ytmusic-player-bar')
-  }
-
-  return !!previousButton
+  // Return empty element if we can't find the object to prevent further errors
+  return objects[v] || document.createElement('p')
 }
 
 function play () {
-  if (checkPlayPauseButton()) {
-    if (!getSongInfo().isPlaying) {
-      playPauseButton.click()
-    }
+  if (!getSongInfo().isPlaying) {
+    get('playPauseButton').click()
   }
 }
 
 function pause () {
-  if (checkPlayPauseButton()) {
-    if (getSongInfo().isPlaying) {
-      playPauseButton.click()
-    }
+  if (getSongInfo().isPlaying) {
+    get('playPauseButton').click()
   }
 }
 
 function toggle () {
-  if (checkPlayPauseButton()) {
-    playPauseButton.click()
-  }
+  get('playPauseButton').click()
 }
 
 function next () {
-  if (checkNextButton()) {
-    nextButton.click()
-  }
+  get('nextButton').click()
 }
 
 function previous () {
-  if (checkPreviousButton()) {
-    previousButton.click()
-  }
+  get('previousButton').click()
 }
 
 function setVolume (volume) {
-  document.getElementById('volume-slider').setAttribute('value', volume)
+  get('volumeSlider').setAttribute('value', volume)
 }
 
 module.exports = {
