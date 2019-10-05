@@ -14,9 +14,9 @@ function getSongInfo () {
     data.title = title.textContent
   }
 
-  const artist_line = document.querySelector('.ytmusic-player-bar.byline')
-  if (artist_line) {
-    data.artist = artist_line.textContent.split('•')[0].trim()
+  const artistLine = document.querySelector('.ytmusic-player-bar.byline')
+  if (artistLine) {
+    data.artist = artistLine.textContent.split('•')[0].trim()
   }
 
   const thumbnail = document.querySelector('.ytmusic-player-bar.byline')
@@ -40,7 +40,7 @@ function getSongInfo () {
   const isPlaying = document.querySelector('.play-pause-button.ytmusic-player-bar')
   if (isPlaying) {
     // TODO: Make this work in multiple languages
-    data.isPlaying = isPlaying.getAttribute('title') == 'Pause'
+    data.isPlaying = isPlaying.getAttribute('title') === 'Pause'
   }
 
   return data
