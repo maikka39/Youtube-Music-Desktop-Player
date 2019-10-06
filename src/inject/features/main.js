@@ -12,10 +12,6 @@ function onPageLoad () {
   if (process.platform === 'linux') {
     require('./linux/main')(PlaybackAPI)
   }
-
-  setTimeout(() => {
-    PlaybackAPI.togglePlayback()
-  }, 5000)
 }
 
 let title = ''
