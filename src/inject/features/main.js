@@ -1,20 +1,32 @@
-const getSongInfo = require('./song_info')
-const addCSS = require('./add_css')
-const setTitle = require('./set_title')
-const mprisService = require('./mpris_service')
+const { getCurrentWindow } = require('electron').remote
+const win = getCurrentWindow()
 
-function onPageLoad (win) {
+const addCSS = require('./add_css')
+const PlaybackAPIConstructor = require('./playback_api/main')
+
+const PlaybackAPI = new PlaybackAPIConstructor()
+
+function onPageLoad () {
   addCSS('main.css')
 
-  setInterval(() => {
-    const info = getSongInfo()
-    setTitle(win, info)
-    mprisService.onSongInfoUpdated(info)
-    mprisService.onSeeked(info.progress)
-    mprisService.onPlaybackStateChange(info.isPlaying)
-    mprisService.onVolumeChange(info.volume)
-  }, 1000)
+  if (process.platform === 'linux') {
+    require('./linux/main')(PlaybackAPI)
+  }
+
+  setTimeout(() => {
+    PlaybackAPI.togglePlayback()
+  }, 5000)
 }
+
+let title = ''
+PlaybackAPI.on('song:change', (info) => {
+  title = (info.song.title) ? info.song.title + ' - ' + info.song.artist : 'YouTube Music Desktop Player'
+  win.setTitle(title)
+})
+
+PlaybackAPI.on('playback:change', () => {
+  win.setTitle(((!PlaybackAPI.isPlaying()) ? '(Paused) ' : '') + title)
+})
 
 module.exports = {
   onPageLoad: onPageLoad

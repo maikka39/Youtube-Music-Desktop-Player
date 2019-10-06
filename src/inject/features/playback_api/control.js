@@ -1,5 +1,3 @@
-const getSongInfo = require('./song_info')
-
 const selectors = {
   playPauseButton: "document.querySelector('.play-pause-button.ytmusic-player-bar')",
   nextButton: "document.querySelector('.next-button.ytmusic-player-bar')",
@@ -16,18 +14,6 @@ function get (v) {
 
   // Return empty element if we can't find the object to prevent further errors
   return objects[v] || document.createElement('p')
-}
-
-function play () {
-  if (!getSongInfo().isPlaying) {
-    get('playPauseButton').click()
-  }
-}
-
-function pause () {
-  if (getSongInfo().isPlaying) {
-    get('playPauseButton').click()
-  }
 }
 
 function toggle () {
@@ -47,8 +33,6 @@ function setVolume (volume) {
 }
 
 module.exports = {
-  play: play,
-  pause: pause,
   toggle: toggle,
   next: next,
   skip: next,
