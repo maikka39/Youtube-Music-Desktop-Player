@@ -23,12 +23,8 @@ function Observer () {
   }
 
   this._get = (v) => {
-    if (!this.objects[v]) {
-      this.objects[v] = eval(this.selectors[v])
-    }
-
     // Return empty element if we can't find the object to prevent further errors
-    return this.objects[v] || document.createElement('p')
+    return eval(this.selectors[v]) || document.createElement('p')
   }
 
   let oldSong

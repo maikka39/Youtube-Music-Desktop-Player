@@ -8,12 +8,8 @@ const selectors = {
 const objects = {}
 
 function get (v) {
-  if (!objects[v]) {
-    objects[v] = eval(selectors[v])
-  }
-
   // Return empty element if we can't find the object to prevent further errors
-  return objects[v] || document.createElement('p')
+  return eval(selectors[v]) || document.createElement('p')
 }
 
 function toggle () {
