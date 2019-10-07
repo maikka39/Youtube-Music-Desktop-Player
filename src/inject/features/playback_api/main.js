@@ -154,6 +154,10 @@ function PlaybackAPI () {
   this.getVolume = () => {
     return this.data.volume
   }
+
+  this.getAllInfo = () => {
+    return this.data
+  }
 }
 
 module.exports = PlaybackAPI
