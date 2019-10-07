@@ -28,7 +28,7 @@ function createWindow () {
   win.loadURL('https://music.youtube.com/')
 
   // Open the DevTools.
-  win.webContents.openDevTools()
+  // win.webContents.openDevTools()
 
   win.on('page-title-updated', (evt) => {
     evt.preventDefault()
