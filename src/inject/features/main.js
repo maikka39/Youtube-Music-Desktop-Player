@@ -1,14 +1,16 @@
 const { getCurrentWindow } = require('electron').remote
 const win = getCurrentWindow()
 
-const addCSS = require('./add_css')
+const AddAssetsConstructor = require('./add_assets')
 const DiscordRPCConstructor = require('./discord_rpc')
 const PlaybackAPIConstructor = require('./playback_api/main')
 
+const AddAssets = new AddAssetsConstructor()
 const PlaybackAPI = new PlaybackAPIConstructor()
 
 function onPageLoad () {
-  addCSS('main.css')
+  AddAssets.addCSS('main.css')
+  AddAssets.addJS('main.js')
 
   DiscordRPC = new DiscordRPCConstructor(PlaybackAPI)
 

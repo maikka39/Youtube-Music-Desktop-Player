@@ -17,3 +17,7 @@ ytmusic-nav-bar {
 .logo.ytmusic-nav-bar {
     display: none;
 }
+
+.background-gradient.ytmusic-immersive-carousel-shelf-renderer {
+  background-image: linear-gradient( to bottom, rgba(0, 0, 0, .5), #131313 );
+}
