@@ -13,12 +13,12 @@ body {
 .navigate_arrow {
   font-weight: 900;
   text-decoration: none;
-  margin: 0 var(--ytmusic-pivot-bar-tab-margin);
+  margin: 0 20px;
   font-family: Roboto, Noto Naskh Arabic UI, Arial, sans-serif;
-  font-size: 30px;
+  font-size: 25px;
   /* font-size: 20px; */
   line-height: var(--ytmusic-title-1_-_line-height);
-  display: inline-flex;
+  display: flex;
   align-items: center;
   color: rgba(255, 255, 255, .5);
   cursor: pointer;
