@@ -1,15 +1,20 @@
+/* Make everything unselectable except inputs and textareas */
 * {
   -webkit-user-select: none;
 }
-
 input, textarea {
   -webkit-user-select: text;
 }
 
+/* Change background to #131313 */
 body {
   background: #131313 !important;
 }
+.background-gradient.ytmusic-immersive-carousel-shelf-renderer {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, .5), #131313);
+}
 
+/* Style to navigationa arrows */
 .navigate_arrow {
   font-weight: 900;
   text-decoration: none;
@@ -23,15 +28,39 @@ body {
   color: rgba(255, 255, 255, .5);
   cursor: pointer;
 }
-
 .navigate_arrow:hover {
   color: rgba(255, 255, 255, 1);
 }
-
 .reverted_arrow {
   transform: scaleX(-1);
 }
 
-.background-gradient.ytmusic-immersive-carousel-shelf-renderer {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, .5), #131313);
+/* Remove player preview when player is minimized */
+ytmusic-player-page[mini-player-enabled_]:not([player-page-open_]) #player.ytmusic-player-page {
+  display: none;
+}
+
+/* Add ability to use queue when the window is smaller */
+@media screen and (max-width: 935px) {
+  /* Make the player page container scrollable */
+  ytmusic-app-layout[player-page-open_] > [slot="player-page"] {
+    overflow-y: auto;
+  }
+
+  /* Make the scrollbar look the same as the others */
+  ytmusic-app-layout[player-page-open_] > [slot="player-page"]::-webkit-scrollbar {
+    width: var(--ytmusic-scrollbar-width);
+  }
+  ytmusic-app-layout[player-page-open_] > [slot="player-page"]::-webkit-scrollbar-thumb {
+    background-color: #606060;
+  }
+  ytmusic-app-layout[player-page-open_] > [slot="player-page"]::-webkit-scrollbar-track {
+    border-left: 1px solid rgba(255, 255, 255, .1);
+    background-color: #131313;
+  }
+
+  /* Set the height of the player page so we can scroll to the queue */
+  .content.ytmusic-player-page {
+    min-height: 130vh;
+  }
 }
