@@ -58,15 +58,15 @@ module.exports = (PlaybackAPI) => {
   })
 
   player.on('position', (data) => {
-    //
+    PlaybackAPI.seek(data.position / 1e6)
   })
 
   player.on('seek', (offset) => {
-    //
+    PlaybackAPI.seek(PlaybackAPI.getProgress().current + offset / 1e6)
   })
 
   PlaybackAPI.on('song:change', (info) => {
-    player.canSeek = false
+    player.canSeek = true
     player.canPlay = true
     player.canPause = true
     player.canGoPrevious = true
@@ -75,6 +75,7 @@ module.exports = (PlaybackAPI) => {
       'xesam:title': info.song.title,
       'xesam:artist': [info.song.artist],
       // 'xesam:album': info.song.album,
+      'mpris:trackid': player.objectPath('track/0'),
       'mpris:artUrl': info.song.thumbnail,
       'mpris:length': info.progress.total * 1e6
     }

@@ -135,6 +135,10 @@ function PlaybackAPI () {
     control.previous()
   }
 
+  this.seek = (time) => {
+    control.seek(time)
+  }
+
   this.setVolume = (v) => {
     control.setVolume(v)
   }
