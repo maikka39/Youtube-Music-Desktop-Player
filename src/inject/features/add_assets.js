@@ -4,7 +4,7 @@ const path = remote.require('path')
 
 function AddAssets () {
   this.addCSS = (filename) => {
-    filepath = path.join(__dirname, '..', 'assets', filename)
+    const filepath = path.join(__dirname, '..', 'assets', filename)
     fs.readFile(filepath, (err, data) => {
       if (err) throw err
 

@@ -6,11 +6,9 @@ const selectors = {
   seekBar: "document.querySelector('#movie_player video')"
 }
 
-const objects = {}
-
 function get (v) {
   // Return empty element if we can't find the object to prevent further errors
-  return eval(selectors[v]) || document.createElement('p')
+  return eval(selectors[v]) || document.createElement('p') // eslint-disable-line no-eval
 }
 
 function toggle () {

@@ -5,8 +5,8 @@
   "main": "src/main.js",
   "scripts": {
     "start": "npm run lint && ./node_modules/.bin/electron .",
-    "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint src/**/*.js  --fix",
+    "lint": "node ./node_modules/eslint/bin/eslint.js ./src/**/*.js",
+    "lint:fix": "node ./node_modules/eslint/bin/eslint.js ./src/**/*.js  --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

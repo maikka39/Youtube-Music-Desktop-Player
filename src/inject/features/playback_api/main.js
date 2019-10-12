@@ -50,7 +50,7 @@ function PlaybackAPI () {
   }, 1000)
 
   Observer.on('playback:change', (state) => {
-    if (state == this.data.playing) {
+    if (state === this.data.playing) {
       return
     }
 

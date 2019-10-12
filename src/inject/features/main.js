@@ -12,7 +12,7 @@ function onPageLoad () {
   AddAssets.addCSS('main.css')
   AddAssets.addJS('main.js')
 
-  DiscordRPC = new DiscordRPCConstructor(PlaybackAPI)
+  const DiscordRPC = new DiscordRPCConstructor(PlaybackAPI) // eslint-disable-line no-unused-vars
 
   if (process.platform === 'linux') {
     require('./linux/main')(PlaybackAPI)

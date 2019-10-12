@@ -24,7 +24,7 @@ function Observer () {
 
   this._get = (v) => {
     // Return empty element if we can't find the object to prevent further errors
-    return eval(this.selectors[v]) || document.createElement('p')
+    return eval(this.selectors[v]) || document.createElement('p') // eslint-disable-line no-eval
   }
 
   let oldSong
