@@ -108,19 +108,11 @@ function PlaybackAPI () {
   }
 
   this.play = () => {
-    if (this.isPlaying()) {
-      return
-    }
-
-    control.toggle()
+    control.play()
   }
 
   this.pause = () => {
-    if (!this.isPlaying()) {
-      return
-    }
-
-    control.toggle()
+    control.pause()
   }
 
   this.togglePlayback = () => {
@@ -137,6 +129,10 @@ function PlaybackAPI () {
 
   this.seek = (time) => {
     control.seek(time)
+  }
+
+  this.seekBy = (time) => {
+    control.seekBy(time)
   }
 
   this.setVolume = (v) => {

@@ -1,41 +1,49 @@
-const selectors = {
-  playPauseButton: "document.querySelector('.play-pause-button.ytmusic-player-bar')",
-  nextButton: "document.querySelector('.next-button.ytmusic-player-bar')",
-  previousButton: "document.querySelector('.previous-button.ytmusic-player-bar')",
-  volumeSlider: "document.getElementById('volume-slider')",
-  seekBar: "document.querySelector('#movie_player video')"
-}
-
-function get (v) {
-  // Return empty element if we can't find the object to prevent further errors
-  return eval(selectors[v]) || document.createElement('p') // eslint-disable-line no-eval
-}
-
+/* eslint-disable no-undef */
 function toggle () {
-  get('playPauseButton').click()
+  if (player.playerApi_.getPlayerState() === 1) {
+    pause()
+    return
+  }
+
+  play()
+}
+
+function play () {
+  player.playerApi_.playVideo()
+}
+
+function pause () {
+  player.playerApi_.pauseVideo()
 }
 
 function next () {
-  get('nextButton').click()
+  player.playerApi_.nextVideo()
 }
 
 function previous () {
-  get('previousButton').click()
+  player.playerApi_.previousVideo()
 }
 
 function seek (time) {
-  get('seekBar').currentTime = time
+  player.playerApi_.seekTo(time)
+}
+
+function seekBy (time) {
+  player.playerApi_.seekBy(time)
 }
 
 function setVolume (volume) {
-  get('volumeSlider').setAttribute('value', volume)
+  player.playerApi_.setVolume(volume)
 }
 
 module.exports = {
   toggle: toggle,
+  play: play,
+  pause: pause,
   next: next,
   skip: next,
   previous: previous,
   seek: seek,
+  seekBy: seekBy,
   setVolume: setVolume
 }
